@@ -29,15 +29,15 @@ jobs:
           import { HashRouter } from "react-router-dom";
 
           ReactDOM.render(
+          <HashRouter>
             <Provider store={store}>
               <React.StrictMode>
                 <PersistGate persistor={persistor}>
-                  <HashRouter>
-                    <App />
-                  </HashRouter>
+                  <App />
                 </PersistGate>
               </React.StrictMode>
-            </Provider>,
+            </Provider>
+          </HashRouter>,
             document.getElementById("root")
           );
 
