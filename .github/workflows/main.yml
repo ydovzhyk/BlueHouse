@@ -11,19 +11,19 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v2.3.1
 
-      - name: Add Homepage to package.json
+      - name: Add Homepage to package.json 📝
         run: |
           sed -i '/"name":/a \  "homepage": "https://ydovzhyk.github.io/BlueHouse/",' package.json
 
-      - name: Set Node Options and Install Dependencies
+      - name: Set Node Options and Install Dependencies 📦
         run: |
           npm ci --legacy-peer-deps
 
-      - name: Build with OpenSSL Compatibility
+      - name: Build with OpenSSL Compatibility 🛠️
         run: |
           NODE_OPTIONS=--openssl-legacy-provider npm run build
 
-      - name: Remove Homepage from package.json
+      - name: Remove Homepage from package.json 🗑️
         run: |
           sed -i '/"homepage":/d' package.json
 
