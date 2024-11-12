@@ -11,13 +11,13 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v2.3.1
 
-      - name: Set Node Options
-        run: echo "NODE_OPTIONS=--openssl-legacy-provider" >> $GITHUB_ENV
-
-      - name: Install and Build 🔧
+      - name: Set Node Options and Install Dependencies
         run: |
           npm ci --legacy-peer-deps
-          npm run build
+
+      - name: Build with OpenSSL Compatibility
+        run: |
+          NODE_OPTIONS=--openssl-legacy-provider npm run build
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.0
