@@ -11,7 +11,6 @@ import houserules_mobile from "../../images/houserules_mobile.png";
 import image2 from "../../images/instagram/insta1.jpg";
 import image1 from "../../images/mobile_images/picture.jpeg";
 import image3 from "../../images/mobile_images/grotta.jpg";
-// import image4 from "../../images/instagram/insta1.jpg";
 import Slide from "@mui/material/Slide";
 import headerLogoMobileSize from "../../images/headerLogoMobileSize.svg";
 import Email from "../../images/Header_icons/headerSocialIcons/email.svg";
@@ -24,9 +23,6 @@ import { WithTransLate } from "../../translating/index";
 import slide1 from "../../images/homePageSlider/slide1.jpg";
 import slide2 from "../../images/homePageSlider/slide2.jpg";
 import slide3 from "../../images/homePageSlider/slide3.jpg";
-// import slide4 from "../../images/homePageSlider/slide4.jpg";
-// import slide5 from "../../images/homePageSlider/slide5.jpg";
-// import slide6 from "../../images/homePageSlider/slide6.jpg";
 
 import { MdArrowForwardIos, MdArrowBackIos } from "react-icons/md";
 
@@ -278,21 +274,6 @@ const sliderData = [
     title: "Image",
     author: "author",
   },
-  // {
-  //   img: slide4,
-  //   title: "Image",
-  //   author: "author",
-  // },
-  // {
-  //   img: slide5,
-  //   title: "Image",
-  //   author: "author",
-  // },
-  // {
-  //   img: slide6,
-  //   title: "Image",
-  //   author: "author",
-  // },
 ];
 
 function Slider({ classes, title }) {
@@ -315,9 +296,7 @@ function Slider({ classes, title }) {
 
   try {
     ref.current.scrollLeft = indexValue * offset;
-  } catch (error) {
-    // console.log(error);
-  }
+  } catch (error) {}
 
   const scroll = (isBack) => {
     if (isBack) {
