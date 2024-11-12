@@ -11,6 +11,35 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v2.3.1
 
+      - name: Backup Original index.js
+        run: |
+          cp src/index.js src/index.original.js
+
+      - name: Modify index.js for HashRouter
+        run: |
+          echo 'import React from "react";' > src/index.js
+          echo 'import ReactDOM from "react-dom";' >> src/index.js
+          echo 'import "./index.css";' >> src/index.js
+          echo 'import App from "./App";' >> src/index.js
+          echo 'import reportWebVitals from "./reportWebVitals";' >> src/index.js
+          echo 'import { PersistGate } from "redux-persist/integration/react";' >> src/index.js
+          echo 'import { Provider } from "react-redux";' >> src/index.js
+          echo 'import { store, persistor } from "./redux/store";' >> src/index.js
+          echo 'import { HashRouter } from "react-router-dom";' >> src/index.js
+          echo 'ReactDOM.render(' >> src/index.js
+          echo '  <Provider store={store}>' >> src/index.js
+          echo '    <React.StrictMode>' >> src/index.js
+          echo '      <PersistGate persistor={persistor}>' >> src/index.js
+          echo '        <HashRouter>' >> src/index.js
+          echo '          <App />' >> src/index.js
+          echo '        </HashRouter>' >> src/index.js
+          echo '      </PersistGate>' >> src/index.js
+          echo '    </React.StrictMode>' >> src/index.js
+          echo '  </Provider>,' >> src/index.js
+          echo '  document.getElementById("root")' >> src/index.js
+          echo ');' >> src/index.js
+          echo 'reportWebVitals();' >> src/index.js
+
       - name: Set Node Options and Install Dependencies
         run: |
           npm ci --legacy-peer-deps
@@ -18,6 +47,10 @@ jobs:
       - name: Build with OpenSSL Compatibility
         run: |
           NODE_OPTIONS=--openssl-legacy-provider npm run build
+
+      - name: Restore Original index.js
+        run: |
+          mv src/index.original.js src/index.js
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.0
