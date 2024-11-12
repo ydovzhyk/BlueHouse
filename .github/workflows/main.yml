@@ -17,28 +17,32 @@ jobs:
 
       - name: Modify index.js for HashRouter
         run: |
-          echo 'import React from "react";' > src/index.js
-          echo 'import ReactDOM from "react-dom";' >> src/index.js
-          echo 'import "./index.css";' >> src/index.js
-          echo 'import App from "./App";' >> src/index.js
-          echo 'import reportWebVitals from "./reportWebVitals";' >> src/index.js
-          echo 'import { PersistGate } from "redux-persist/integration/react";' >> src/index.js
-          echo 'import { Provider } from "react-redux";' >> src/index.js
-          echo 'import { store, persistor } from "./redux/store";' >> src/index.js
-          echo 'import { HashRouter } from "react-router-dom";' >> src/index.js
-          echo 'ReactDOM.render(' >> src/index.js
-          echo '  <Provider store={store}>' >> src/index.js
-          echo '    <React.StrictMode>' >> src/index.js
-          echo '      <PersistGate persistor={persistor}>' >> src/index.js
-          echo '        <HashRouter>' >> src/index.js
-          echo '          <App />' >> src/index.js
-          echo '        </HashRouter>' >> src/index.js
-          echo '      </PersistGate>' >> src/index.js
-          echo '    </React.StrictMode>' >> src/index.js
-          echo '  </Provider>,' >> src/index.js
-          echo '  document.getElementById("root")' >> src/index.js
-          echo ');' >> src/index.js
-          echo 'reportWebVitals();' >> src/index.js
+          cat <<EOF > src/index.js
+          import React from "react";
+          import ReactDOM from "react-dom";
+          import "./index.css";
+          import App from "./App";
+          import reportWebVitals from "./reportWebVitals";
+          import { PersistGate } from "redux-persist/integration/react";
+          import { Provider } from "react-redux";
+          import { store, persistor } from "./redux/store";
+          import { HashRouter } from "react-router-dom";
+
+          ReactDOM.render(
+            <Provider store={store}>
+              <React.StrictMode>
+                <PersistGate persistor={persistor}>
+                  <HashRouter>
+                    <App />
+                  </HashRouter>
+                </PersistGate>
+              </React.StrictMode>
+            </Provider>,
+            document.getElementById("root")
+          );
+
+          reportWebVitals();
+          EOF
 
       - name: Set Node Options and Install Dependencies
         run: |
