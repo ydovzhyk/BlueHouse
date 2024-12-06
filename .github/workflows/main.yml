@@ -13,7 +13,11 @@ jobs:
 
       - name: Add Homepage to package.json 📝
         run: |
-          sed -i '/"name":/a \  "homepage": "https://ydovzhyk.github.io/BlueHouse/",' package.json
+          sed -i '/"name":/a \  "homepage": "https://it-siciliamia.github.io/BlueHouse_New/",' package.json
+
+      - name: Show package.json 🛠️
+        run: |
+          cat package.json
 
       - name: Set Node Options and Install Dependencies 📦
         run: |
@@ -32,4 +36,4 @@ jobs:
         with:
           branch: gh-pages
           folder: build
-          token: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          token: ${{ secrets.ACCESS_TOKEN_DEPLOYMENT }}

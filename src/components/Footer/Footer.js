@@ -1,12 +1,14 @@
+import React from "react";
+import { useLocation } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 import { items } from "./footerData";
 import { makeStyles } from "@material-ui/core";
-import Logo from "../images/footer/logo-blue.svg";
-import { FaLongArrowAltUp } from "react-icons/fa";
-import { WithTransLate } from "../../translating";
+import { WithTransLate } from "../helpers/translating";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    maxWidth: "91%",
+    maxWidth: "80%",
     margin: "0 auto",
     padding: theme.spacing(2),
     display: "grid",
@@ -17,6 +19,16 @@ const useStyles = makeStyles((theme) => ({
       alignItems: "center",
       justifyContent: "space-between",
       flexDirection: "row",
+    },
+    [theme.breakpoints.down("xs")]: {
+      maxWidth: "100%",
+      margin: "0px",
+      marginTop: "-10px",
+      marginBottom: "-30px",
+      paddingTop: "0px",
+      paddingBottom: "0px",
+      paddingLeft: "40px",
+      paddingRight: "40px",
     },
   },
   logo: {
@@ -32,24 +44,31 @@ const useStyles = makeStyles((theme) => ({
     gridTemplateColumns: "1fr",
     gridGap: theme.spacing(2),
     [theme.breakpoints.up("sm")]: {
+      width: "100%",
       display: "flex",
-      flexDirection: "row-reverse",
-      flex: 1,
-      justifyContent: "space-around",
-      alignItems: "flex-start",
+      flexDirection: "row",
+      justifyContent: "space-between",
+      gap: "30px",
     },
     [theme.breakpoints.down("xs")]: {
-      gridTemplateColumns: "repeat(2, 1fr)",
-      gap: theme.spacing(2), 
-      gridTemplateAreas: `
-      "item3 item2"
-      "item1 item4"
-    `,
+      width: "100%",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "space-between",
+    },
+  },
+  socials: {
+    display: "flex",
+    flexDirection: "column !important",
+    gap: "10px !important",
+    [theme.breakpoints.down("xs")]: {
+      flexDirection: "row !important",
+      justifyContent: "flex-start",
+      marginLeft: "0px",
     },
   },
   titleContainer: {
-    display: "flex",
-    alignItems: "flex-start",
+    display: "column",
     marginBottom: theme.spacing(2),
     [theme.breakpoints.up("sm")]: {
       marginBottom: 0,
@@ -60,13 +79,12 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   title: {
-    fontSize: "14px",
+    fontSize: "18px",
     fontWeight: "bold",
-    color: "#073762",
+    color: "#14202B",
     textAlign: "left",
-    writingMode: "vertical-rl",
-    transform: "rotate(180deg)",
     marginBottom: "10px",
+    whiteSpace: "nowrap",
     marginRight: theme.spacing(2),
     [theme.breakpoints.down("sm")]: {
       writingMode: "horizontal-tb",
@@ -77,7 +95,7 @@ const useStyles = makeStyles((theme) => ({
   },
   link: {
     fontSize: "16px",
-    maxWidth: "170px",
+    maxWidth: "240px",
     gap: "30px",
     fontWeight: "300",
     display: "flex",
@@ -90,6 +108,18 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.down("xs")]: {
       justifyContent: "flex-start",
+    },
+  },
+  socialLink: {
+    display: "flex",
+    alignItems: "center",
+    [theme.breakpoints.down("xs")]: {
+      marginRight: "20px",
+    },
+  },
+  socialName: {
+    [theme.breakpoints.down("xs")]: {
+      display: "none",
     },
   },
   itemLinks: {
@@ -105,13 +135,12 @@ const useStyles = makeStyles((theme) => ({
   },
   lineSeparator: {
     margin: "auto",
-    borderBottom: "1px solid #3B5998",
-    width: "90%",
-    opacity: '30%',
-
+    borderBottom: "1px solid #1D3967",
+    width: "80%",
+    opacity: "30%",
   },
   blueHouseContainer: {
-    maxWidth: "90%",
+    maxWidth: "80%",
     margin: "0 auto",
     paddingBottom: theme.spacing(2),
     paddingTop: theme.spacing(2),
@@ -132,7 +161,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 300,
     marginRight: "10px",
     flexShrink: 0,
-    cursor: 'pointer'
+    cursor: "pointer",
   },
   scrollToTopBtn: {
     borderRadius: "100%",
@@ -141,50 +170,99 @@ const useStyles = makeStyles((theme) => ({
     height: "30px",
     width: "30px",
     cursor: "pointer",
-    backgroundColor: '#073762',
-    border: "1px solid #073762",
-
+    backgroundColor: "transparent",
+    border: "none",
   },
 }));
 
-const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
-
 function Footer() {
+  const location = useLocation();
   const classes = useStyles();
+  const isMobile = useMediaQuery({ maxDeviceWidth: 767 });
+
+  const isInternalLink = (href) => {
+    return href.startsWith("/");
+  };
 
   return (
     <>
       <div style={{ marginBottom: "2rem" }} />
+      {!isMobile && location.pathname !== "/" && (
+        <div
+          className={classes.lineSeparator}
+          style={{ marginBottom: "2.5rem" }}
+        ></div>
+      )}
       <div className={classes.container}>
-        <div className={classes.logo}>
-          <img src={Logo} alt="Bluehouse_logo" />
-        </div>
         <div className={classes.linkContainer}>
           {items.map((item, index) => (
-            <div className={classes.titleContainer} key={index} style={{ gridArea: `item${index + 1}` }}>
+            <div
+              className={classes.titleContainer}
+              key={index}
+              style={{ gridArea: `item${index + 1}` }}
+            >
               <h3 className={classes.title}>
                 <WithTransLate text={item.title} />
               </h3>
-              <div className={classes.itemLinks}>
+              <div
+                className={`${classes.itemLinks} ${
+                  index === 2 ? classes.socials : ""
+                }`}
+              >
                 {item.links.map((link, idx) => (
-                  <a
-                    key={idx}
-                    href={link.href}
-                    className={classes.link}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    {link.icon && (
-                      <img
-                        src={link.icon}
-                        className={classes.icon}
-                        alt={link.name}
-                      />
+                  <React.Fragment key={idx}>
+                    {isInternalLink(link.href) ? (
+                      <Link
+                        to={link.href}
+                        className={`${classes.link} ${
+                          index === 2 ? classes.socialLink : ""
+                        }`}
+                      >
+                        {link.icon && (
+                          <img
+                            src={link.icon}
+                            className={classes.icon}
+                            alt={`Go to ${link.name}`}
+                          />
+                        )}
+                        <span className={index === 2 ? classes.socialName : ""}>
+                          <WithTransLate text={link.name} />
+                        </span>
+                      </Link>
+                    ) : (
+                      <a
+                        href={link.href}
+                        className={`${classes.link} ${
+                          index === 2 ? classes.socialLink : ""
+                        }`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {link.icon && (
+                          <img
+                            src={link.icon}
+                            className={classes.icon}
+                            alt={`Go to ${link.name}`}
+                          />
+                        )}
+                        <span className={index === 2 ? classes.socialName : ""}>
+                          <WithTransLate text={link.name} />
+                        </span>
+                      </a>
                     )}
-                    <WithTransLate text={link.name} />
-                  </a>
+                  </React.Fragment>
                 ))}
               </div>
+              {index < items.length - 1 && isMobile && (
+                <div
+                  style={{
+                    width: "100%",
+                    borderBottom: "1px solid #1D3967",
+                    opacity: "30%",
+                    marginTop: "20px",
+                  }}
+                ></div>
+              )}
             </div>
           ))}
         </div>
@@ -192,14 +270,6 @@ function Footer() {
       <div className={classes.lineSeparator} style={{ marginTop: "2rem" }} />
       <div className={classes.blueHouseContainer}>
         <span className={classes.blueHouse}>© Blue House 2024</span>
-        <div className={classes.right} onClick={scrollToTop}>
-          <div className={classes.backToTop}>
-            <WithTransLate text="Back To Top" />
-          </div>
-          <button className={classes.scrollToTopBtn}>
-            <FaLongArrowAltUp color="white" />
-          </button>
-        </div>
       </div>
     </>
   );
