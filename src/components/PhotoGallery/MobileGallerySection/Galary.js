@@ -16,7 +16,7 @@ import { WithTransLate } from "../../helpers/translating";
 import ImageSlider from "./ImageSlider/ImageSlider";
 
 function CustomTabPanel(props) {
-  const isMobile = useMediaQuery({ maxDeviceWidth: 767 });
+  const isTwoColumn = useMediaQuery({ maxDeviceWidth: 600 });
   const { children, value, index, Rooms } = props;
 
   return (
@@ -32,11 +32,11 @@ function CustomTabPanel(props) {
           <Box
             sx={{
               display: "grid",
-              gridTemplateColumns: isMobile
+              gridTemplateColumns: isTwoColumn
                 ? "repeat(1, 1fr)"
                 : "repeat(2, 1fr)",
               width: "100%",
-              gap: isMobile ? "40px" : "18px",
+              gap: isTwoColumn ? "40px" : "18px",
               paddingX: "20px",
             }}
           >
@@ -202,10 +202,13 @@ const Gallery = () => {
             margin: "20px 20px",
             marginTop: "0px",
             "& .MuiTab-root": {
+              paddingLeft: "0px !important",
+              paddingRight: "0px !important",
+              paddingBottom: "0px !important",
               fontFamily: "Josefin Sans",
               textTransform: "none",
               fontWeight: "400",
-              fontSize: "18px",
+              fontSize: "16px",
               minWidth: 100,
               color: "#8F8F8F",
               position: "relative",
