@@ -71,14 +71,12 @@ a {
   color: unset;
 }
 
-.App {
-  padding: 0 6vw 0 7.6vw;
-  margin-bottom: 100px;
-  margin-top: 120px;
-}
-
-.clickable:hover {
+/* .clickable:hover {
   cursor: url(./images/cursor.svg), auto;
+} */
+
+.custom-cursor {
+  cursor: url("./images/cursor.svg"), auto !important;
 }
 
 .MuiInputBase-input:focus {
@@ -87,26 +85,36 @@ a {
 
 .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
   border-color: rgba(0, 0, 0, 0.23) !important;
-  border-width: 1px !important ;
+  border-width: 1px !important;
 }
 
-@media (max-width: 1280px) {
-  .App {
-    padding: 0 2.63vw;
+.App {
+  /* border: 1px solid violet; */
+  @media (min-width: 320px) and (max-width: 599.99px) {
+    padding-top: 75px;
+    width: 100%;
+  }
+  @media (min-width: 600px) and (max-width: 959.99px) {
+    padding-top: 82px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 600px;
+  }
+  @media (min-width: 960px) and (max-width: 1279.99px) {
+    padding-top: 82px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 960px;
+  }
+  @media (min-width: 1280px) and (max-width: 2200px) {
+    padding-top: 112px;
+    padding-left: 100px;
+    padding-right: 100px;
+    min-width: 1280px;
+    max-width: 2200px;
   }
 }
-@media (max-width: 600px) {
-  .App {
-    margin-top: -125px;
-    padding: 0;
-    margin-bottom: 50px;
-  }
-  .outLinedButton {
-    padding: 8px 20px 5px !important;
-    font-size: 16px;
-    line-height: 20px;
-  }
-}
+
 .hidden {
   display: none;
 }

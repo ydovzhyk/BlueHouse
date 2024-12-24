@@ -6,30 +6,15 @@ import { makeStyles } from "@material-ui/core";
 import { WithTransLate } from "../helpers/translating";
 import { Link } from "react-router-dom";
 
+import s from "./Footer.module.scss";
+
 const useStyles = makeStyles((theme) => ({
   container: {
-    maxWidth: "80%",
     margin: "0 auto",
     padding: theme.spacing(2),
     display: "grid",
     gridTemplateColumns: "1fr",
     gridGap: theme.spacing(2),
-    [theme.breakpoints.up("md")]: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "space-between",
-      flexDirection: "row",
-    },
-    [theme.breakpoints.down("xs")]: {
-      maxWidth: "100%",
-      margin: "0px",
-      marginTop: "-10px",
-      marginBottom: "-30px",
-      paddingTop: "0px",
-      paddingBottom: "0px",
-      paddingLeft: "40px",
-      paddingRight: "40px",
-    },
   },
   logo: {
     marginBottom: theme.spacing(2),
@@ -136,17 +121,23 @@ const useStyles = makeStyles((theme) => ({
   lineSeparator: {
     margin: "auto",
     borderBottom: "1px solid #1D3967",
-    width: "80%",
+    width: "100%",
     opacity: "30%",
   },
   blueHouseContainer: {
-    maxWidth: "80%",
-    margin: "0 auto",
+    width: "100%",
     paddingBottom: theme.spacing(2),
     paddingTop: theme.spacing(2),
     display: "flex",
-    justifyContent: "space-between",
+    flexDirection: "row",
+    justifyContent: "center",
     alignItems: "center",
+    "@media (min-width: 1280px) and (max-width: 2200px)": {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "flex-start",
+      alignItems: "center",
+    },
   },
   blueHouse: {
     fontSize: "14px",
@@ -178,22 +169,29 @@ const useStyles = makeStyles((theme) => ({
 function Footer() {
   const location = useLocation();
   const classes = useStyles();
-  const isMobile = useMediaQuery({ maxDeviceWidth: 767 });
+  const isMobile = useMediaQuery({ minWidth: 320, maxWidth: 599.99 });
+  const isTablet = useMediaQuery({ minWidth: 600, maxWidth: 959.99 });
+  const isLaptop = useMediaQuery({ minWidth: 960, maxWidth: 1279.99 });
+  const isDesktop = useMediaQuery({ minWidth: 1280, maxWidth: 2200 });
+
+  const islineSeparator = useMediaQuery({ maxDeviceWidth: 559.99 });
 
   const isInternalLink = (href) => {
     return href.startsWith("/");
   };
 
   return (
-    <>
-      <div style={{ marginBottom: "2rem" }} />
-      {!isMobile && location.pathname !== "/" && (
-        <div
-          className={classes.lineSeparator}
-          style={{ marginBottom: "2.5rem" }}
-        ></div>
-      )}
-      <div className={classes.container}>
+    <footer style={{ width: "100%" }}>
+      {/* <div className={classes.container}> */}
+      <div className={s.container}>
+        {!isMobile &&
+          location.pathname !== "/" &&
+          !location.pathname.startsWith("/beds24") && (
+            <div
+              className={classes.lineSeparator}
+              style={{ marginBottom: isDesktop ? "5rem" : "2.5rem" }}
+            ></div>
+          )}
         <div className={classes.linkContainer}>
           {items.map((item, index) => (
             <div
@@ -253,7 +251,7 @@ function Footer() {
                   </React.Fragment>
                 ))}
               </div>
-              {index < items.length - 1 && isMobile && (
+              {index < items.length - 1 && islineSeparator && (
                 <div
                   style={{
                     width: "100%",
@@ -266,12 +264,18 @@ function Footer() {
             </div>
           ))}
         </div>
+        <div
+          className={classes.lineSeparator}
+          style={{
+            marginBottom: isDesktop ? "1rem" : isLaptop ? "0.5rem" : "0.5rem",
+            marginTop: isDesktop ? "4.5rem" : isMobile ? "1rem" : "2.5rem",
+          }}
+        />
+        <div className={classes.blueHouseContainer}>
+          <span className={classes.blueHouse}>© Blue House 2024</span>
+        </div>
       </div>
-      <div className={classes.lineSeparator} style={{ marginTop: "2rem" }} />
-      <div className={classes.blueHouseContainer}>
-        <span className={classes.blueHouse}>© Blue House 2024</span>
-      </div>
-    </>
+    </footer>
   );
 }
 
