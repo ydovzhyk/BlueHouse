@@ -11,8 +11,8 @@ import "./index.css";
 
 const RoomBooking = () => {
   const isMobile = useMediaQuery({ minWidth: 320, maxWidth: 599.99 });
-  // const isTablet = useMediaQuery({ minWidth: 600, maxWidth: 959.99 });
-  // const isLaptop = useMediaQuery({ minWidth: 960, maxWidth: 1279.99 });
+  const isTablet = useMediaQuery({ minWidth: 600, maxWidth: 959.99 });
+  const isLaptop = useMediaQuery({ minWidth: 960, maxWidth: 1279.99 });
   const isDesktop = useMediaQuery({ minWidth: 1280, maxWidth: 2200 });
 
   const tripadvisorRating = {
@@ -27,16 +27,16 @@ const RoomBooking = () => {
   ];
   return (
     <div className="roomBooking">
-      {isDesktop && (
+      {(isMobile || isTablet) && <SearchContainerMobile />}
+      {(isDesktop || isLaptop) && (
         <div className="hero">
           <HeaderIcons />
           <SearchContainer />
         </div>
       )}
-      {isMobile && <SearchContainerMobile />}
       {isDesktop && <Advantages />}
-      {isDesktop && <ServicesRoom />}
-      {isDesktop && (
+      <ServicesRoom />
+      {(isDesktop || isLaptop) && (
         <ReviewRoomBooking
           tripadvisor={tripadvisorRating}
           googleRatings={googleRatings}
