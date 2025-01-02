@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/BlueHouse/static/css/main.08e3549b.chunk.css",
-    "main.js": "/BlueHouse/static/js/main.62e2377b.chunk.js",
-    "main.js.map": "/BlueHouse/static/js/main.62e2377b.chunk.js.map",
-    "runtime-main.js": "/BlueHouse/static/js/runtime-main.b3bcfe57.js",
-    "runtime-main.js.map": "/BlueHouse/static/js/runtime-main.b3bcfe57.js.map",
+    "main.css": "/BlueHouse/static/css/main.d50e93bd.chunk.css",
+    "main.js": "/BlueHouse/static/js/main.1668bbb2.chunk.js",
+    "main.js.map": "/BlueHouse/static/js/main.1668bbb2.chunk.js.map",
+    "runtime-main.js": "/BlueHouse/static/js/runtime-main.6f83c53e.js",
+    "runtime-main.js.map": "/BlueHouse/static/js/runtime-main.6f83c53e.js.map",
     "static/css/2.f7c89dc1.chunk.css": "/BlueHouse/static/css/2.f7c89dc1.chunk.css",
-    "static/js/2.cccf5e23.chunk.js": "/BlueHouse/static/js/2.cccf5e23.chunk.js",
-    "static/js/2.cccf5e23.chunk.js.map": "/BlueHouse/static/js/2.cccf5e23.chunk.js.map",
-    "static/js/3.1b11c220.chunk.js": "/BlueHouse/static/js/3.1b11c220.chunk.js",
-    "static/js/3.1b11c220.chunk.js.map": "/BlueHouse/static/js/3.1b11c220.chunk.js.map",
+    "static/js/2.3ae7553a.chunk.js": "/BlueHouse/static/js/2.3ae7553a.chunk.js",
+    "static/js/2.3ae7553a.chunk.js.map": "/BlueHouse/static/js/2.3ae7553a.chunk.js.map",
+    "static/js/3.9b9fb75b.chunk.js": "/BlueHouse/static/js/3.9b9fb75b.chunk.js",
+    "static/js/3.9b9fb75b.chunk.js.map": "/BlueHouse/static/js/3.9b9fb75b.chunk.js.map",
     "index.html": "/BlueHouse/index.html",
     "static/css/2.f7c89dc1.chunk.css.map": "/BlueHouse/static/css/2.f7c89dc1.chunk.css.map",
-    "static/css/main.08e3549b.chunk.css.map": "/BlueHouse/static/css/main.08e3549b.chunk.css.map",
-    "static/js/2.cccf5e23.chunk.js.LICENSE.txt": "/BlueHouse/static/js/2.cccf5e23.chunk.js.LICENSE.txt",
+    "static/css/main.d50e93bd.chunk.css.map": "/BlueHouse/static/css/main.d50e93bd.chunk.css.map",
+    "static/js/2.3ae7553a.chunk.js.LICENSE.txt": "/BlueHouse/static/js/2.3ae7553a.chunk.js.LICENSE.txt",
     "static/media/01.278a9320.webp": "/BlueHouse/static/media/01.278a9320.webp",
     "static/media/01.7f671f80.webp": "/BlueHouse/static/media/01.7f671f80.webp",
     "static/media/01.b2b6d3ec.webp": "/BlueHouse/static/media/01.b2b6d3ec.webp",
@@ -126,8 +126,8 @@
     "static/media/a7.9861d22b.webp": "/BlueHouse/static/media/a7.9861d22b.webp",
     "static/media/a9.e1f34340.webp": "/BlueHouse/static/media/a9.e1f34340.webp",
     "static/media/aboutus.89d4b478.svg": "/BlueHouse/static/media/aboutus.89d4b478.svg",
-    "static/media/add_services01.b553ae2c.webp": "/BlueHouse/static/media/add_services01.b553ae2c.webp",
-    "static/media/add_services02.7d2fbaca.webp": "/BlueHouse/static/media/add_services02.7d2fbaca.webp",
+    "static/media/add_services01.5f8bed49.webp": "/BlueHouse/static/media/add_services01.5f8bed49.webp",
+    "static/media/add_services02.0fa164dc.webp": "/BlueHouse/static/media/add_services02.0fa164dc.webp",
     "static/media/add_services03.18936464.webp": "/BlueHouse/static/media/add_services03.18936464.webp",
     "static/media/add_services04.30413fd7.webp": "/BlueHouse/static/media/add_services04.30413fd7.webp",
     "static/media/airplane.30b29741.svg": "/BlueHouse/static/media/airplane.30b29741.svg",
@@ -283,10 +283,10 @@
     "static/media/zoho_chat.5971b98c.svg": "/BlueHouse/static/media/zoho_chat.5971b98c.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.b3bcfe57.js",
+    "static/js/runtime-main.6f83c53e.js",
     "static/css/2.f7c89dc1.chunk.css",
-    "static/js/2.cccf5e23.chunk.js",
-    "static/css/main.08e3549b.chunk.css",
-    "static/js/main.62e2377b.chunk.js"
+    "static/js/2.3ae7553a.chunk.js",
+    "static/css/main.d50e93bd.chunk.css",
+    "static/js/main.1668bbb2.chunk.js"
   ]
 }
